@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node ./src/cli.js",
+    "clean": "node ./src/cli.js --clean",
+    "start": "node ./src/cli.js --watch"
   },
   "repository": {
     "type": "git",
@@ -18,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/jacobcorvidae/jacobcorvidae.com/issues"
   },
-  "homepage": "https://github.com/jacobcorvidae/jacobcorvidae.com#readme"
+  "homepage": "https://github.com/jacobcorvidae/jacobcorvidae.com#readme",
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "marked": "^0.6.2",
+    "sass": "^1.20.1"
+  }
 }

@@ -1,9 +1,11 @@
-<!doctype html>
+"use strict";
+
+module.exports = ({ html, file, modified, style, title, articles }) => `<!doctype html>
 <html amp lang="en">
   <head>
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <title>Jacob Corvidea</title>
+    <title>${title}</title>
     <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <script type="application/ld+json">
@@ -11,22 +13,20 @@
         "@context": "http://schema.org",
         "@type": "Article",
         "author": "Jacob Corvidea",
-        "headline": "Jacob Corvidea",
-        "datePublished": "Wed May 15 2019 23:23:31 GMT-0600 (Mountain Daylight Time)"
+        "headline": "${title}",
+        "datePublished": "${modified}"
       }
     </script>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-    <style amp-custom>body {
-  background: #eee;
-}</style>
+    <style amp-custom>${style}</style>
   </head>
   <body>
-    <h1 id="jacob-corvidea">Jacob Corvidea</h1>
-<p>Anything here will be on your &quot;homepage&quot;. We can change this to being the most recent article. But that may not be ideal.</p>
-<p>hello</p>
-
+    ${html}
     <ul>
-      <li><a href="/hello-world.html">Hello World 2</a></li><li><a href="/some-fancy-long-slug.html">Some Fancy Page with Cool Content</a></li>
+      ${articles
+        .filter(article => article.file !== file)
+        .map(({ file, title }) => `<li><a href="/${file.replace(".md", ".html")}">${title}</a></li>`)
+        .join("")}
     </ul>
   </body>
-</html>
+</html>`;
