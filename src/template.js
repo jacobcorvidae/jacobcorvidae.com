@@ -5,14 +5,14 @@ module.exports = ({ html, file, modified, style, title, articles }) => `<!doctyp
   <head>
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <title>${title}</title>
+    <title>${title} - Jacob Corvidae</title>
     <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
         "@type": "Article",
-        "author": "Jacob Corvidea",
+        "author": "Jacob Corvidae",
         "headline": "${title}",
         "datePublished": "${modified}"
       }
