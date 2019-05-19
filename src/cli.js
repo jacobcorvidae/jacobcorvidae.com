@@ -9,13 +9,27 @@ const docsPath = path.join(__dirname, "..", "docs");
 
 const getArticle = file => {
   const source = fs.readFileSync(path.join(articlesPath, file), "utf8");
-  const tokens = marked.lexer(source);
-  const h1 = tokens.find(token => token && token.type === "heading" && token.depth === 1 && token.text);
+  const metadata = { title: file, image: "", date: new Date(), tags: [], genre: "" };
+  let tokens = marked.lexer(source);
+
+  if (tokens && tokens[0].type === "code" && tokens[0].lang === "metadata") {
+    const token = tokens[0];
+    tokens.splice(0, 1);
+    try {
+      const meta = JSON.parse(token.text);
+      for (const m in meta) {
+        if (!(m in metadata)) continue;
+        metadata[m] = m === "date" ? new Date(meta[m]) : meta[m];
+      }
+    } catch (e) {
+      throw new Error("Invalid metadata format for: " + file + "; " + e);
+    }
+  }
+
   return {
     file,
     html: marked.parser(tokens),
-    modified: new Date(fs.statSync(path.join(articlesPath, file)).mtime),
-    title: h1 ? h1.text : file.replace(".md", ""),
+    metadata,
   };
 };
 

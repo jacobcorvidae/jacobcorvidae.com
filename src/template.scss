@@ -1,3 +1,130 @@
+html {
+  line-height: 1.8;
+  -webkit-text-size-adjust: 100%;
+  font-size: 90%;
+}
+
 body {
-  background: #eee;
+  font-family: "Iowan Old Style", Palatino, Palatino Linotype, "Palatino LT STD", Garamond, Baskerville,
+    Baskerville Old Face, Hoefler Text, Times New Roman, serif;
+  margin: 0;
+  padding: 0;
+  color: rgb(69, 69, 69);
+}
+
+main {
+  display: block;
+}
+
+h1,
+article p,
+nav,
+footer {
+  max-width: 34rem;
+  margin: 1.5rem auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 2em auto 1em;
+  font-weight: 700;
+  text-align: center;
+}
+
+header {
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 1em;
+}
+
+amp-img {
+  max-height: calc(70vh - 3rem);
+}
+
+amp-img img {
+  object-fit: cover;
+}
+
+article {
+  margin-bottom: 7rem;
+}
+
+nav,
+footer {
+  text-align: center;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+nav > p {
+  font-style: italic;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 1rem auto 5rem;
+}
+
+[hidden] {
+  display: none;
+}
+
+nav {
+  .nav-genre {
+    font-size: 1rem;
+    margin: 2em auto 1em;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style: none;
+
+    a {
+      display: flex;
+      align-items: baseline;
+
+      span {
+        flex: 0 1 auto;
+      }
+
+      .nav-spacer {
+        height: 1px;
+        flex: 1 0 auto;
+        margin: 0 1rem;
+        border-bottom: 1px solid rgba(0, 0, 139, 0.1);
+      }
+    }
+  }
+}
+
+footer {
+  margin: 7rem auto 5rem;
+}
+
+footer a,
+p a {
+  border-bottom: 0.33em solid rgba(0, 0, 139, 0.1);
+}
+
+footer a {
+  margin: 0.3rem;
+}
+
+.genre {
+  font-style: italic;
+}
+
+@media (min-width: 550px) {
+  html {
+    font-size: 100%;
+  }
 }
