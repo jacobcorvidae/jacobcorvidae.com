@@ -6,6 +6,7 @@ const fs = require("fs");
 const { execSync } = require("child_process");
 const articlesPath = path.join(__dirname, "..", "articles");
 const docsPath = path.join(__dirname, "..", "docs");
+const whitelist = ["about.html", "contact.html"];
 
 const getArticle = file => {
   const source = fs.readFileSync(path.join(articlesPath, file), "utf8");
@@ -40,7 +41,12 @@ const getArticles = () => /* : [{file, title, html, modified}] */ {
 
 const getCustomStyle = () => `${sass.renderSync({ file: path.join(__dirname, "template.scss") }).css}`;
 
-const clean = () => execSync(`rm -fr ${docsPath}/*.html`);
+const clean = () => {
+  fs.readdirSync(docsPath).forEach(doc => {
+    if (doc.indexOf(".html") === -1 || whitelist.includes(doc)) return;
+    execSync(`rm -f ${docsPath}/${doc}`);
+  });
+};
 
 const generateFile = ({ article, articles, style }) => {
   const template = require("./template");

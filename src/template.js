@@ -59,8 +59,8 @@ module.exports = ({ html, file, style, metadata, articles }) => `<!doctype html>
         .join("\n")}
     </nav>
     <footer>
-      <a href="/">about</a>
-      <a href="/">connect</a>
+      <a href="/about.html">about</a>
+      <a href="/contact.html">connect</a>
       <a href="/">medium</a>
     </footer>
   </body>
